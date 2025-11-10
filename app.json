@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "SticketSmash",
-    "slug": "SticketSmash",
+    "name": "RickMortyFantasy",
+    "slug": "RickMortyFantasy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "sticketsmash",
+    "scheme": "rickmortyfantasy",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
