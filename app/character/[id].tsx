@@ -20,7 +20,6 @@ export default function CharacterScreen() {
     if (isFetching) return <ActivityIndicator size="large" style={styles.loader} />;
     if (error) return <Text>Error: {error.message}</Text>;
     if (!data) return <Text>Character not found</Text>;
-
     return (
         <ScrollView style={styles.container}>
             {data &&
@@ -39,9 +38,9 @@ export default function CharacterScreen() {
                                 fontSize: 24,
                                 letterSpacing: 1,
                                 fontWeight: 700,
-                                width: 200, 
+                                width: 200,
                             }}
-                            adjustsFontSizeToFit={false} 
+                            adjustsFontSizeToFit={false}
                         >
                             {data.name}
                         </Text>
@@ -67,29 +66,69 @@ export default function CharacterScreen() {
                         <Text style={{
                             fontSize: 12,
                             fontWeight: 500,
-                                width: 200, 
+                            width: 200,
 
 
                         }}
-                            adjustsFontSizeToFit={false} 
+                            adjustsFontSizeToFit={false}
 
                         >Origin: {data.origin.name}</Text>
                         <Text style={{
                             fontSize: 12,
                             fontWeight: 500,
-                                width: 200, 
+                            width: 200,
 
                         }}
-                        adjustsFontSizeToFit={false} 
+                            adjustsFontSizeToFit={false}
                         >Location: {data.location.name}</Text>
                     </View>
                 </View>
 
             }
-            <Text style={styles.sectionTitle}>Episodes:</Text>
-            {data.episode.map((ep: { id: string, name: string }) => (
-                <Text key={ep.id} style={styles.episode}>{ep.name}</Text>
-            ))}
+            <View style={{
+                backgroundColor: '#fff',
+                shadowColor: '#e7e0e0ff',
+                shadowOffset: {
+                    width: 0,
+                    height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                borderRadius: 5,
+                margin: 10,
+                padding:10
+            }}>
+                <Text style={styles.sectionTitle}>Episodes:</Text>
+                {data.episode.map((ep) => (
+    <View 
+        key={ep.id} 
+        style={{
+            backgroundColor: '#fff',
+            marginHorizontal: 12,
+            marginVertical: 4,
+            padding: 12,
+            borderRadius: 6,
+            borderBottomWidth: 1,
+            borderBottomColor: '#f0f0f0',
+        }}
+    >
+        <Text style={{
+            fontSize: 14,
+            fontWeight: '600',
+        }}>
+            {ep.episode} • {ep.name}
+        </Text>
+        <Text style={{
+            fontSize: 12,
+            color: '#888',
+            marginTop: 2,
+        }}>
+            {ep.air_date}
+        </Text>
+    </View>
+))}
+            </View>
+
         </ScrollView>
     )
 }

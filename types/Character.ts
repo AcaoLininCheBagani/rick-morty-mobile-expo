@@ -15,6 +15,8 @@ export interface Character {
   episode: Array<{
     id: string;
     name: string;
+    air_date: string;
+    episode: string;
   }>;
 }
 
