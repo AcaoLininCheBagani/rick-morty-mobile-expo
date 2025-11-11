@@ -12,7 +12,7 @@ export default function CharacterScreen() {
         const data = await client.request<{ character: Character }>(GET_CHARACTER, { id });
         return data.character
     }
-    const { isPending, isFetching, isError, data, error } = useQuery({
+    const { isFetching, data, error } = useQuery({
         queryKey: ['character'],
         queryFn: () => fetchCharacters(id.toString()),
     })
