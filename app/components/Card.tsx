@@ -1,13 +1,15 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useNavigation } from "expo-router";
+import { useRouter } from "expo-router";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-
 export default function Card() {
-    const navigation = useNavigation()
+    const router = useRouter()
     return (
         <TouchableOpacity
             style={styles.card}
+            onPress={()=> {
+                router.push('/character')
+            }}
         >
             <View style={styles.row}>
                 <Image source={{ uri: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg' }} style={styles.image} />
@@ -23,7 +25,6 @@ export default function Card() {
         </TouchableOpacity>
     )
 }
-
 
 const styles = StyleSheet.create({
     card: {
