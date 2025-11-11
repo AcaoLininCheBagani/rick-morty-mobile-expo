@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "RickMortyFantasy",
-    "slug": "RickMortyFantasy",
+    "name": "rick-morty-fan-app",
+    "slug": "rick-morty-fan-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "rickmortyfantasy",
+    "scheme": "rickmortyfanapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
