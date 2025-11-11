@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 export default function CharacterScreen() {
-    
+
     const { id } = useLocalSearchParams();
 
     const fetchCharacters = async (id: string) => {
@@ -23,27 +23,73 @@ export default function CharacterScreen() {
 
     return (
         <ScrollView style={styles.container}>
-            {data ? (
-                <>
-                    <Image source={{ uri: data.image }} style={styles.image} />
-                    <View>
-                        <Text style={styles.name}>{data.name}</Text>
-                        <Text style={styles.name}>{data.status}</Text>
-                        <Text style={styles.name}>{data.species}</Text>
-                        <Text style={styles.name}>{data.gender}</Text>
-                        <Text style={styles.name}>{data.origin.name}</Text>
-                        <Text style={styles.name}>{data.location.name}</Text>
-                        {data.type && <Text style={styles.detail}>Type:{data.type}</Text>}
-                        <Text style={styles.sectionTitle}>Episodes:</Text>
-                        {data.episode.map((ep: { id: string, name: string }) => (
-                            <Text key={ep.id} style={styles.episode}>{ep.name}</Text>
-                        ))}
+            {data &&
+                <View style={styles.vw}>
+                    <View style={{ borderTopStartRadius: 5, borderBottomLeftRadius: 5, padding: 0, overflow: 'hidden', width: 150 }}>
+                        <Image source={{ uri: data.image }} style={styles.image} />
                     </View>
-                </>
+                    <View style={{
+                        height: '100%',
+                        justifyContent: 'space-around',
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                    }}>
+                        <Text
+                            style={{
+                                fontSize: 24,
+                                letterSpacing: 1,
+                                fontWeight: 700,
+                                width: 200, 
+                            }}
+                            adjustsFontSizeToFit={false} 
+                        >
+                            {data.name}
+                        </Text>
+                        <Text style={{
+                            fontSize: 12,
+                            fontWeight: 700
+                        }}>
+                            {data.species} - {data.gender}
+                        </Text>
+                        <Text style={{
+                            fontSize: 12,
+                            fontWeight: 400
 
-            ) : (
-                <Text> Hello</Text>
-            )}
+                        }}>Type - <Text style={{ fontWeight: 700 }}>{data.type ? data.type : 'N/A'}</Text>
+                        </Text>
+                        <Text style={{
+                            fontSize: 12,
+                            fontWeight: 400
+
+                        }}>Status - <Text style={{ fontWeight: 700 }}>{data.status}</Text>
+                        </Text>
+
+                        <Text style={{
+                            fontSize: 12,
+                            fontWeight: 500,
+                                width: 200, 
+
+
+                        }}
+                            adjustsFontSizeToFit={false} 
+
+                        >Origin: {data.origin.name}</Text>
+                        <Text style={{
+                            fontSize: 12,
+                            fontWeight: 500,
+                                width: 200, 
+
+                        }}
+                        adjustsFontSizeToFit={false} 
+                        >Location: {data.location.name}</Text>
+                    </View>
+                </View>
+
+            }
+            <Text style={styles.sectionTitle}>Episodes:</Text>
+            {data.episode.map((ep: { id: string, name: string }) => (
+                <Text key={ep.id} style={styles.episode}>{ep.name}</Text>
+            ))}
         </ScrollView>
     )
 }
@@ -59,7 +105,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 300,
+        height: 200,
     },
     infoContainer: {
         padding: 16,
@@ -84,4 +130,19 @@ const styles = StyleSheet.create({
         marginBottom: 4,
         color: '#666',
     },
+    vw: {
+        backgroundColor: '#fff',
+        shadowColor: '#e7e0e0ff',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        borderRadius: 5,
+        alignItems: 'center',
+        flexDirection: 'row',
+        margin: 10,
+        height: 200
+    }
 });
