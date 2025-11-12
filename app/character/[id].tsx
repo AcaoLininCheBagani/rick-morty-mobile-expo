@@ -13,7 +13,7 @@ export default function CharacterScreen() {
         <ScrollView style={styles.container}>
             {data &&
                 <View style={styles.vw}>
-                    <View style={{ borderTopStartRadius: 5, borderBottomLeftRadius: 5, padding: 0, overflow: 'hidden', width: 150 }}>
+                    <View style={styles.imgContainer}>
                         <Image source={{ uri: data.image }} style={styles.image} />
                     </View>
                     <View style={styles.subcontainer}>
@@ -132,14 +132,13 @@ const styles = StyleSheet.create({
     },
     infodef: {
         fontSize: 12,
-        fontWeight: 400
-
+        fontWeight: 400,
+        width:200
     },
     infoloc: {
         fontSize: 12,
         fontWeight: 500,
         width: 200,
-
     },
     infospec: {
         fontSize: 12,
@@ -165,5 +164,12 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         borderBottomWidth: 1,
         borderBottomColor: '#f0f0f0',
+    },
+    imgContainer: {
+        borderTopStartRadius: 5,
+        borderBottomLeftRadius: 5,
+        padding: 0,
+        overflow: 'hidden',
+        width: 150
     }
 });
