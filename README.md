@@ -1,8 +1,7 @@
 # Welcome to rick and morty expo app 👋
 
 # Preview
-<img width="459" height="972" alt="prev1" src="https://github.com/user-attachments/assets/b099f63c-86ce-4a6c-bef4-1990301f1237" /> | <img width="450" height="962" alt="prev2" src="https://github.com/user-attachments/assets/7e2a4516-d19a-4018-80b2-9b160bb01877" />
-
+<img width="354" height="736" alt="prev3" src="https://github.com/user-attachments/assets/89b3692d-4103-41b9-bbc1-887febf062a4" />|<img width="354" height="737" alt="prev4" src="https://github.com/user-attachments/assets/aaefafcd-4535-4c74-86a1-d83df4db8085" />
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
