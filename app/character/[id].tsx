@@ -1,25 +1,14 @@
-import { GET_CHARACTER } from "@/graphql/queries";
-import { client } from "@/lib/graphqlClient";
-import { Character } from "@/types/Character";
-import { useQuery } from "@tanstack/react-query";
+import { useGetCharacter } from "@/hooks/tanstackHooks";
 import { useLocalSearchParams } from "expo-router";
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 export default function CharacterScreen() {
-
-    const { id } = useLocalSearchParams();
-
-    const fetchCharacters = async (id: string) => {
-        const data = await client.request<{ character: Character }>(GET_CHARACTER, { id });
-        return data.character
-    }
-    const { isFetching, data, error } = useQuery({
-        queryKey: ['character'],
-        queryFn: () => fetchCharacters(id.toString()),
-    })
+    const { id } = useLocalSearchParams<{id: string}>();
+    const { isFetching, data, error } = useGetCharacter(id)
 
     if (isFetching) return <ActivityIndicator size="large" style={styles.loader} />;
     if (error) return <Text>Error: {error.message}</Text>;
     if (!data) return <Text>Character not found</Text>;
+
     return (
         <ScrollView style={styles.container}>
             {data &&
