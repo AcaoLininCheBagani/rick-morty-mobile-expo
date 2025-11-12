@@ -2,7 +2,7 @@ import { useGetCharacter } from "@/hooks/tanstackHooks";
 import { useLocalSearchParams } from "expo-router";
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 export default function CharacterScreen() {
-    const { id } = useLocalSearchParams<{id: string}>();
+    const { id } = useLocalSearchParams<{ id: string }>();
     const { isFetching, data, error } = useGetCharacter(id)
 
     if (isFetching) return <ActivityIndicator size="large" style={styles.loader} />;
@@ -16,108 +16,53 @@ export default function CharacterScreen() {
                     <View style={{ borderTopStartRadius: 5, borderBottomLeftRadius: 5, padding: 0, overflow: 'hidden', width: 150 }}>
                         <Image source={{ uri: data.image }} style={styles.image} />
                     </View>
-                    <View style={{
-                        height: '100%',
-                        justifyContent: 'space-around',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                    }}>
+                    <View style={styles.subcontainer}>
                         <Text
-                            style={{
-                                fontSize: 24,
-                                letterSpacing: 1,
-                                fontWeight: 700,
-                                width: 200,
-                            }}
+                            style={styles.infoname}
                             adjustsFontSizeToFit={false}
                         >
                             {data.name}
                         </Text>
-                        <Text style={{
-                            fontSize: 12,
-                            fontWeight: 700
-                        }}>
+                        <Text style={styles.infospec}>
                             {data.species} - {data.gender}
                         </Text>
-                        <Text style={{
-                            fontSize: 12,
-                            fontWeight: 400
-
-                        }}>Type - <Text style={{ fontWeight: 700 }}>{data.type ? data.type : 'N/A'}</Text>
+                        <Text style={styles.infodef}>Type - <Text style={{ fontWeight: 700 }}>{data.type ? data.type : 'N/A'}</Text>
                         </Text>
-                        <Text style={{
-                            fontSize: 12,
-                            fontWeight: 400
-
-                        }}>Status - <Text style={{ fontWeight: 700 }}>{data.status}</Text>
+                        <Text style={styles.infodef}>Status - <Text style={{ fontWeight: 700 }}>{data.status}</Text>
                         </Text>
 
-                        <Text style={{
-                            fontSize: 12,
-                            fontWeight: 500,
-                            width: 200,
-
-
-                        }}
-                            adjustsFontSizeToFit={false}
-
-                        >Origin: {data.origin.name}</Text>
-                        <Text style={{
-                            fontSize: 12,
-                            fontWeight: 500,
-                            width: 200,
-
-                        }}
+                        <Text style={styles.infoloc}
+                            adjustsFontSizeToFit={false}>
+                            Origin: {data.origin.name}</Text>
+                        <Text style={styles.infoloc}
                             adjustsFontSizeToFit={false}
                         >Location: {data.location.name}</Text>
                     </View>
                 </View>
-
             }
-            <View style={{
-                backgroundColor: '#fff',
-                shadowColor: '#e7e0e0ff',
-                shadowOffset: {
-                    width: 0,
-                    height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-                borderRadius: 5,
-                margin: 10,
-                padding:10
-            }}>
+            <View style={styles.infocard}>
                 <Text style={styles.sectionTitle}>Episodes:</Text>
                 {data.episode.map((ep) => (
-    <View 
-        key={ep.id} 
-        style={{
-            backgroundColor: '#fff',
-            marginHorizontal: 12,
-            marginVertical: 4,
-            padding: 12,
-            borderRadius: 6,
-            borderBottomWidth: 1,
-            borderBottomColor: '#f0f0f0',
-        }}
-    >
-        <Text style={{
-            fontSize: 14,
-            fontWeight: '600',
-        }}>
-            {ep.episode} • {ep.name}
-        </Text>
-        <Text style={{
-            fontSize: 12,
-            color: '#888',
-            marginTop: 2,
-        }}>
-            {ep.air_date}
-        </Text>
-    </View>
-))}
+                    <View
+                        key={ep.id}
+                        style={styles.infolist}
+                    >
+                        <Text style={{
+                            fontSize: 14,
+                            fontWeight: '600',
+                        }}>
+                            {ep.episode} • {ep.name}
+                        </Text>
+                        <Text style={{
+                            fontSize: 12,
+                            color: '#888',
+                            marginTop: 2,
+                        }}>
+                            {ep.air_date}
+                        </Text>
+                    </View>
+                ))}
             </View>
-
         </ScrollView>
     )
 }
@@ -125,6 +70,12 @@ export default function CharacterScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    subcontainer: {
+        height: '100%',
+        justifyContent: 'space-around',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
     loader: {
         flex: 1,
@@ -172,5 +123,47 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         margin: 10,
         height: 200
+    },
+    infoname: {
+        fontSize: 24,
+        letterSpacing: 1,
+        fontWeight: 700,
+        width: 200,
+    },
+    infodef: {
+        fontSize: 12,
+        fontWeight: 400
+
+    },
+    infoloc: {
+        fontSize: 12,
+        fontWeight: 500,
+        width: 200,
+
+    },
+    infospec: {
+        fontSize: 12,
+        fontWeight: 700
+    },
+    infocard: {
+        backgroundColor: '#fff',
+        shadowColor: '#e7e0e0ff',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        borderRadius: 5,
+        margin: 10,
+        padding: 10
+    }, infolist: {
+        backgroundColor: '#fff',
+        marginHorizontal: 12,
+        marginVertical: 4,
+        padding: 12,
+        borderRadius: 6,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f0f0f0',
     }
 });
