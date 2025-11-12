@@ -47,17 +47,10 @@ export default function CharacterScreen() {
                         key={ep.id}
                         style={styles.infolist}
                     >
-                        <Text style={{
-                            fontSize: 14,
-                            fontWeight: '600',
-                        }}>
+                        <Text style={styles.epi}>
                             {ep.episode} • {ep.name}
                         </Text>
-                        <Text style={{
-                            fontSize: 12,
-                            color: '#888',
-                            marginTop: 2,
-                        }}>
+                        <Text style={styles.epidt}>
                             {ep.air_date}
                         </Text>
                     </View>
@@ -133,7 +126,7 @@ const styles = StyleSheet.create({
     infodef: {
         fontSize: 12,
         fontWeight: 400,
-        width:200
+        width: 200
     },
     infoloc: {
         fontSize: 12,
@@ -171,5 +164,14 @@ const styles = StyleSheet.create({
         padding: 0,
         overflow: 'hidden',
         width: 150
+    },
+    epi: {
+        fontSize: 14,
+        fontWeight: '600',
+    },
+    epidt: {
+        fontSize: 12,
+        color: '#888',
+        marginTop: 2,
     }
 });
