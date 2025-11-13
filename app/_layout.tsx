@@ -6,14 +6,17 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Stack
-        screenOptions={{
-          headerShadowVisible: false
-        }}
-      >
-        <Stack.Screen name="index" options={{ title: 'Characters' }} />
-        <Stack.Screen name="character/[id]" options={{ title: 'Information' }} />
-      </Stack>
+        <Stack
+          screenOptions={{
+            headerShadowVisible: false,
+            contentStyle:{
+              backgroundColor: '#fff'
+            }
+          }}
+        >
+          <Stack.Screen name="index" options={{ title: 'Characters' }} />
+          <Stack.Screen name="character/[id]" options={{ title: 'Information' }} />
+        </Stack>
     </QueryClientProvider>
   )
 }

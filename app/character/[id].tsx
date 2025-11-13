@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        marginTop: 16,
+        marginLeft: 5,
+        marginTop: 5,
         marginBottom: 8,
     },
     episode: {
@@ -104,18 +105,16 @@ const styles = StyleSheet.create({
     },
     vw: {
         backgroundColor: '#fff',
-        shadowColor: '#e7e0e0ff',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        boxShadow: '2px 2px 3.84px #f7f0f0ff',
+        borderWidth: 0.5,
+        borderColor: '#e0e0e0', 
         borderRadius: 5,
         alignItems: 'center',
         flexDirection: 'row',
         margin: 10,
-        height: 200
+        height: 200,
+        marginLeft: 20,
+        marginRight: 20
     },
     infoname: {
         fontSize: 24,
@@ -139,16 +138,14 @@ const styles = StyleSheet.create({
     },
     infocard: {
         backgroundColor: '#fff',
-        shadowColor: '#e7e0e0ff',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        boxShadow: '2px 2px 3.84px #f7f0f0ff',
+        borderWidth: 0.5, 
+        borderColor: '#e0e0e0', 
         borderRadius: 5,
         margin: 10,
-        padding: 10
+        padding: 10,
+        marginLeft: 20,
+        marginRight: 20
     }, infolist: {
         backgroundColor: '#fff',
         marginHorizontal: 12,

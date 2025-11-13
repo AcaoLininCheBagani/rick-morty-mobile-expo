@@ -1,10 +1,10 @@
 import { fetchCharacter, fetchCharacters } from "@/api/gql";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
-export const useGetCharacters = () => {
+export const useGetCharacters = (name:string) => {
     return useInfiniteQuery({
-        queryKey: ['characters'],
-        queryFn: ({ pageParam = 1 }) => fetchCharacters(pageParam),
+        queryKey: ['characters', name],
+        queryFn: ({ pageParam = 1}) => fetchCharacters(pageParam, name),
         getNextPageParam: (lastPage) => {
             return lastPage.info.next ? lastPage.info.next : undefined;
         },

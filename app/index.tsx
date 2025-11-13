@@ -1,16 +1,18 @@
 import Card from "@/components/Card";
+import DebouncedSearchInput from "@/components/SearchInput";
 import { useGetCharacters } from "@/hooks/tanstackHooks";
 import React from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
 export default function Index() {
+  const [searchInput, setSearchInput] = React.useState<string>('')
   const {
     data,
     isLoading,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage
-  } = useGetCharacters()
- 
+  } = useGetCharacters(searchInput)
+
   const loadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
@@ -24,19 +26,30 @@ export default function Index() {
       </View>
     );
   }
+  const handleSearch = (query: string) => {
+    setSearchInput(query);
+  };
+
   return (
-    <FlatList
-      data={data || []}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <Card item={item} />
-      )}
-      onEndReached={loadMore}
-      onEndReachedThreshold={0.5}
-      ListFooterComponent={
-        isFetchingNextPage ? <ActivityIndicator style={{ marginVertical: 16 }} /> : null
-      }
-    />
+    <>
+      <DebouncedSearchInput
+        onSearch={handleSearch}
+        delay={700}
+        value={searchInput}
+      />
+      <FlatList
+        data={data || []}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <Card item={item} />
+        )}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={
+          isFetchingNextPage ? <ActivityIndicator style={{ marginVertical: 16 }} /> : null
+        }
+      />
+    </>
   );
 }
 
