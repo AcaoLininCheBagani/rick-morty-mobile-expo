@@ -11,18 +11,18 @@ const DebouncedSearchInput = React.memo(({
   const timeoutRef = React.useRef<number | null>(null);
 
   const handleTextChange = (newText: string) => {
+
     setLocalText(newText);
-
+    
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-
     timeoutRef.current = setTimeout(() => {
       onSearch(newText); 
     }, delay);
   };
 
-  React.useEffect(() => {
-    setLocalText(value);
-  }, [value]);
+  // React.useEffect(() => {
+  //   setLocalText(value);
+  // }, [value]);
 
   return (
     <TextInput

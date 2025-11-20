@@ -19,13 +19,6 @@ export default function Index() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
   const handleSearch = (query: string) => {
     setSearchInput(query);
   };
@@ -37,18 +30,24 @@ export default function Index() {
         delay={700}
         value={searchInput}
       />
-      <FlatList
-        data={data || []}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Card item={item} />
-        )}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={
-          isFetchingNextPage ? <ActivityIndicator style={{ marginVertical: 16 }} /> : null
-        }
-      />
+      {isLoading ? (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" />
+        </View>
+      ) : (
+        <FlatList
+          data={data || []}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <Card item={item} />
+          )}
+          onEndReached={loadMore}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={
+            isFetchingNextPage ? <ActivityIndicator style={{ marginVertical: 16 }} /> : null
+          }
+        />
+      )}
     </>
   );
 }
