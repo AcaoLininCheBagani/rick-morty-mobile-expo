@@ -4,8 +4,7 @@ import { StyleSheet, TextInput } from "react-native";
 
 const DebouncedSearchInput = React.memo(({ 
   onSearch,
-  delay,
-  value = ''
+  delay
 }: DSearchProps) => {
   const [localText, setLocalText] = React.useState('');
   const timeoutRef = React.useRef<number | null>(null);
@@ -19,10 +18,6 @@ const DebouncedSearchInput = React.memo(({
       onSearch(newText); 
     }, delay);
   };
-
-  // React.useEffect(() => {
-  //   setLocalText(value);
-  // }, [value]);
 
   return (
     <TextInput

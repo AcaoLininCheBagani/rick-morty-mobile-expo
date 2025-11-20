@@ -28,7 +28,6 @@ export default function Index() {
       <DebouncedSearchInput
         onSearch={handleSearch}
         delay={700}
-        value={searchInput}
       />
       {isLoading ? (
         <View style={styles.container}>
